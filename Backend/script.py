@@ -1,253 +1,201 @@
 import json
-from collections import defaultdict
-from tkinter import filedialog, Tk
+import os
 from datetime import datetime
 
-#Lecture du fichier json qui esty dans c:\Users\Candillier Aurélien\OneDrive - yncréa\Documents\Prog\Python\Python_Traitement_Donnees\Backend\structure_ticket.json
+# Constante pour le nom du fichier
+FICHIER_DONNEES = 'structure_ticket.json'
+
+# --- GESTION DES FICHIERS ---
+
 def open_read_JSON():
-    # 1. On crée une fenêtre invisible (Tkinter en a besoin pour afficher le sélecteur)
-    root = Tk()
-    root.withdraw() # Cache la fenêtre principale
-    root.attributes('-topmost', True) # Force le sélecteur à passer devant les autres fenêtres
-
-    # on va chercher le fichier json dans c:\Users\Candillier Aurélien\OneDrive - yncréa\Documents\Prog\Python\Python_Traitement_Donnees\Backend\structure_ticket.json
-    chemin_fichier = 'structure_ticket.json'
-    
-
-    # # 2. On ouvre la boîte de dialogue Windows
-    # chemin_fichier = filedialog.askopenfilename(
-    #     title="Sélectionnez votre fichier de tickets",
-    #     filetypes=[("Fichiers JSON", "*.json"), ("Tous les fichiers", "*.*")]
-    # )
-
-    # 3. On vérifie si l'utilisateur a bien choisi un fichier ou s'il a annulé
-    if not chemin_fichier:
-        print("Aucun fichier sélectionné.")
+    """Lit le fichier JSON et retourne la liste des tickets."""
+    if not os.path.exists(FICHIER_DONNEES):
         return []
-
-    # 4. On réutilise ta logique de lecture habituelle
     try:
-        with open(chemin_fichier, 'r', encoding='utf-8') as fichier:
+        with open(FICHIER_DONNEES, 'r', encoding='utf-8') as fichier:
             return json.load(fichier)
-    except Exception as e:
-        print(f"Erreur lors de l'ouverture : {e}")
+    except (json.JSONDecodeError, FileNotFoundError):
         return []
 
-    
-#Calcul du nombre de ticket par statut
+def save_JSON(data):
+    """Sauvegarde la liste des données dans le fichier JSON."""
+    with open(FICHIER_DONNEES, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+# --- FONCTIONS LOGIQUES (MÉTIER) ---
+# Ces fonctions ne contiennent aucun print() ni input()
+
 def count_tic_stat(liste_tickets):
+    """Compte le nombre de tickets par statut."""
     resultats = {}
     for ticket in liste_tickets:
-        # On extrait le statut. Si absent, on met 'Unknown'
         s = ticket.get('status', 'inconnu').lower()
-        
-        # Logique de comptage
         if s in resultats:
             resultats[s] += 1
         else:
             resultats[s] = 1
     return resultats
-        
-# récupère les tickets en entrée et renvoie la liste des tickets triés selon le critère
+
 def trier(liste_tickets, critere='priority'):
-    return sorted(liste_tickets, key=lambda x: x.get(critere, ''))
+    """Trie la liste selon une clé donnée."""
+    # On utilise str() pour éviter les crashs si la valeur n'est pas une string
+    return sorted(liste_tickets, key=lambda x: str(x.get(critere, '')).lower())
 
-# récupère les tickets en entrée et renvoie la liste des tickets filtrés selon le critère
 def filtre(liste_tickets, critere, valeur):
-    return [ticket for ticket in liste_tickets if ticket.get(critere) == valeur]
+    """Filtre la liste pour ne garder que les tickets correspondant à la valeur."""
+    return [ticket for ticket in liste_tickets if str(ticket.get(critere, '')).lower() == valeur.lower()]
 
-# affiche les options si on veut filtrer, trier, etc
-def afficher_options():
-    print("Options disponibles :")
-    print("1. Trier les tickets")
-    print("2. Filtrer les tickets")
-    print("3. Ajouter un ticket")
-    print("4. Mettre à jour un ticket")
-    while True:
-        choix = input("Sélectionnez une option (1-4) ou 'q' pour quitter : ")
-        if choix in ['1', '2', '3', '4', 'q']:
-            return choix
-        else:
-            print("Option invalide. Veuillez réessayer.")
-            
-#Fonction pour choisir le critère de tri et afficher le résultat
-def choix_trier():
-    while True:
-            Select_critere = input("saisissez un critère de tri (par défaut 'priority') : \n1- id \n2- status \n3- priority \n4- tags \n5- date créée\n").lower()
-            if Select_critere == "":
-                continue
-            elif Select_critere == "1" or "id":
-                print(trier(data, "id"))
-                break
-            elif Select_critere == "2" or "status":
-                print(trier(data, "status"))
-                break
-            elif Select_critere == "3" or "priority":
-                print(trier(data, "priority"))
-                break
-            elif Select_critere == "4" or "tags":
-                print(trier(data, "tags"))
-                break
-            elif Select_critere == "5" or "date créée":
-                print(trier(data, "createdAt"))
-                break
-            else:
-                print("Critère invalide. Veuillez réessayer.")
-                
-# on ajoute un ticket (en étant limité sur les champs id, status, priority et tags)
-def ajouter_ticket():
-    new_ticket = {}
+def ajouter_ticket(data, title, description, priority, status, tags):
+    """Crée un ticket, l'ajoute à la liste et sauvegarde."""
+    if data:
+        # On s'assure que l'ID est bien un entier pour l'incrémentation
+        last_id = int(data[-1]['id'])
+        new_id = last_id + 1
+    else:
+        new_id = 1
     
-    #on renseigne l'id du dernier ticket valide + 1 et que le format reste sans les guillemets
-    new_ticket['id'] = int(data[-1]['id']) + 1
+    new_ticket = {
+        "id": new_id,
+        "title": title,
+        "description": description,
+        "priority": priority,
+        "status": status,
+        "tags": tags,
+        "createdAt": datetime.now().strftime("%Y-%m-%d")
+    }
     
-    # on renseigne le titre du ticket et on vérifie qu'il n'est pas vide
-    while True:
-        new_ticket['title'] = input("Entrez le titre du ticket : ")
-        if new_ticket['title']:
-            break
-        else:
-            print("Le titre ne peut pas être vide.")
-    
-    # on renseigne la description du ticket et on vérifie qu'elle n'est pas vide
-    while True:
-        new_ticket['description'] = input("Entrez la description du ticket : ")
-        if new_ticket['description']:
-            break
-        else:
-            print("La description ne peut pas être vide.")
-    
-    # on s'assure que la priorité renseignée est valide
-    while True:  
-        new_ticket['priority'] = input("Entrez la priorité du ticket (choix possibles : low, medium, high) : ").capitalize()
-        if new_ticket['priority'] in ['Low', 'Medium', 'High']:
-            break
-        else:
-            print("Priorité invalide. Veuillez réessayer. Choix possibles : low, medium, high")
-        
-   # on s'assure que le status renseigné est valide
-    while True:
-        new_ticket['status'] = input("Entrez le statut du ticket  (choix possibles : Open, Closed, In progress): ").capitalize()
-        if new_ticket['status'] in ['Open', 'Closed', 'In progress']:
-            break
-        else:
-            print("Statut invalide. Veuillez réessayer. Choix possibles : Open, Closed, In progress")
-        
-    new_ticket['tags'] = input("Entrez les tags du ticket (séparés par des virgules) : ").split(',')
-    
-    # on rajoute la date de création année-mois-jour
-    new_ticket['createdAt'] = datetime.now().strftime("%Y-%m-%d")
-        
     data.append(new_ticket)
+    save_JSON(data)
+    return new_ticket
+
+def mettre_a_jour_ticket_logique(data, ticket_id, modifications):
+    """
+    Met à jour un ticket spécifique.
+    modifications est un dictionnaire contenant les champs à changer.
+    """
+    ticket_trouve = None
+    for ticket in data:
+        if ticket['id'] == ticket_id:
+            ticket_trouve = ticket
+            break
     
-    # on va écrire dans le fichier JSON qu'on a ouvert au début et on rajoute le ticket créé à la fin puis on sauvegarde
-    with open('structure_ticket.json', 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
-    
-    print("Ticket ajouté avec succès.")
-    
-# mise à jour des tickets
-def mettre_a_jour_ticket():
-    while True:
-        ticket_id = input(f"Entrez l'ID du ticket à mettre à jour (choix possibles : {[ticket['id'] for ticket in data]}    ) ")
-        try:
-            ticket_id = int(ticket_id)
-        except:
-            continue
+    if ticket_trouve:
+        # On applique les modifications seulement si elles ne sont pas vides
+        for cle, valeur in modifications.items():
+            if valeur: # Si la valeur n'est pas vide
+                ticket_trouve[cle] = valeur
         
-        print(ticket_id)
-        if ticket_id in [ticket['id'] for ticket in data]:
-            for ticket in data:
-                if ticket['id'] == ticket_id:
-                    print(f"Ticket trouvé : {ticket}")
-                    
-                    #on met à jour le titre
-                    new_titre = input("Entrez le nouveau titre (laisser vide pour ne pas changer) : ")
-                    if new_titre:
-                        ticket['title'] = new_titre
-                        
-                    #on met à jour la description
-                    new_description = input("Entrez la nouvelle description (laisser vide pour ne pas changer) : ")
-                    if new_description:
-                        ticket['description'] = new_description
-                    
-                    # on peut mettre à jour le status et la priority
-                    new_status = input("Entrez le nouveau statut (laisser vide pour ne pas changer) : ").capitalize()
-                    if new_status in ['Open', 'Closed', 'In progress']:
-                        ticket['status'] = new_status
-                    elif new_status != "":
-                        print("Statut invalide. Le statut n'a pas été modifié.")
-                    
-                    new_priority = input("Entrez la nouvelle priorité (laisser vide pour ne pas changer) : ").capitalize()
-                    if new_priority in ['Low', 'Medium', 'High']:
-                        ticket['priority'] = new_priority
-                    elif new_priority != "":
-                        print("Priorité invalide. La priorité n'a pas été modifiée.")
-                    
-                    # on sauvegarde les modifications dans le fichier JSON
-                    with open('structure_ticket.json', 'w', encoding='utf-8') as file:
-                        json.dump(data, file, ensure_ascii=False, indent=4)
-                    
-                    print("Ticket mis à jour avec succès.")
-                    return
-        else:
-            print("ID introuvable. Veuillez réessayer.")
-    
+        save_JSON(data)
+        return ticket_trouve
+    return None
 
+# --- FONCTIONS UTILITAIRES ---
 
-#vérifie les valeurs possibles pour un critère donné et on return la liste des valeurs possibles
 def check_crit(liste_tickets, critere):
+    """Renvoie les valeurs uniques existantes pour un critère donné."""
     valeurs_possibles = set()
     for ticket in liste_tickets:
         if critere in ticket:
             valeurs_possibles.add(ticket[critere])
     return valeurs_possibles
 
-    
+# --- INTERFACE UTILISATEUR (CLI) ---
+# Tout ce qui concerne l'interaction humaine est ici
+
 if __name__ == "__main__":
-    # Ce code ne s'exécute QUE si tu lances "python script.py"
-    # Il ne se lancera PAS quand FastAPI importera ce fichier.
+    print("--- Démarrage du script en mode CLI ---")
     data = open_read_JSON()
-    if data:
-        stats = count_tic_stat(data)
-        print(f"Statistiques des tickets : {stats}")
-        while True:
-            option = afficher_options()
-            if option == '1':
-                choix_trier()
-                break
-            elif option == '2':
-                while True:
-                    critere = input("Entrez le critère de filtrage (status, priority, etc.) : ")
-                    # on vérifie que le critère est valide
-                    if critere not in ['status', 'priority', 'tags']:
-                        print("Critère invalide. Veuillez réessayer.")
-                        continue
-                    break
-                
-                while True:
-                    Liste_possible = check_crit(data, critere)
-                    print(f"Valeurs possibles pour {critere} : {Liste_possible}")
-                    valeur = input(f"Entrez la valeur pour {critere} : ").capitalize()
-                    if valeur in Liste_possible:
-                        break
-                    else:
-                        print("Valeur invalide. Veuillez réessayer.")
-                        continue
-                
-                tickets_filtres = filtre(data, critere, valeur)
-                print(f"Tickets filtrés : {tickets_filtres}")
-                break
-            elif option == '3':
-                ajouter_ticket()
-                break
-            elif option == '4':
-                mettre_a_jour_ticket()
-                break
-            elif option == 'q':
-                print("Au revoir!")
-                break
+    
+    if not data:
+        print("Attention : Aucune donnée chargée ou fichier vide.")
+
+    while True:
+        print("\nOptions disponibles :")
+        print("1. Trier les tickets")
+        print("2. Filtrer les tickets")
+        print("3. Ajouter un ticket")
+        print("4. Mettre à jour un ticket")
+        print("5. Voir les stats")
+        print("q. Quitter")
+        
+        choix = input("Votre choix : ")
+
+        if choix == '1':
+            critere = input("Critère de tri (id, status, priority, tags, createdAt) : ")
+            # Correction du bug logique 'or' que tu avais
+            if critere in ['id', 'status', 'priority', 'tags', 'createdAt']:
+                res = trier(data, critere)
+                print(json.dumps(res, indent=2, ensure_ascii=False))
             else:
-                print("Option invalide. Veuillez réessayer.")
+                print("Critère inconnu, tri par défaut (priority).")
+                print(json.dumps(trier(data), indent=2, ensure_ascii=False))
+
+        elif choix == '2':
+            critere = input("Critère (status, priority) : ")
+            possibles = check_crit(data, critere)
+            print(f"Valeurs existantes : {possibles}")
+            valeur = input("Valeur recherchée : ")
+            res = filtre(data, critere, valeur)
+            print(json.dumps(res, indent=2, ensure_ascii=False))
+
+        elif choix == '3':
+            # On pose les questions ICI, pas dans la fonction
+            t = input("Titre : ")
+            d = input("Description : ")
+            
+            p = ""
+            while p not in ['Low', 'Medium', 'High']:
+                p = input("Priorité (Low, Medium, High) : ").capitalize()
+            
+            s = ""
+            while s not in ['Open', 'In progress', 'Closed']:
+                s = input("Statut (Open, In progress, Closed) : ").capitalize()
                 
-    print("Fin du programme.")
+            tags_input = input("Tags (séparés par des virgules) : ")
+            tags_list = [tag.strip() for tag in tags_input.split(',')]
+            
+            # Appel de la fonction pure
+            ticket = ajouter_ticket(data, t, d, p, s, tags_list)
+            print(f"✅ Ticket ajouté : ID {ticket['id']}")
+
+        elif choix == '4':
+            try:
+                tid = int(input("ID du ticket à modifier : "))
+                
+                # On prépare les changements
+                print("Laissez vide si pas de changement.")
+                new_title = input("Nouveau titre : ")
+                new_desc = input("Nouvelle description : ")
+                new_p = input("Nouvelle priorité : ").capitalize()
+                new_s = input("Nouveau statut : ").capitalize()
+                
+                # On vérifie la validité des champs restreints si l'utilisateur a tapé quelque chose
+                if new_p and new_p not in ['Low', 'Medium', 'High']:
+                    print("Priorité invalide, ignorée.")
+                    new_p = None
+                
+                if new_s and new_s not in ['Open', 'In progress', 'Closed']:
+                    print("Statut invalide, ignoré.")
+                    new_s = None
+
+                # On construit le dictionnaire de modifications
+                updates = {
+                    "title": new_title,
+                    "description": new_desc,
+                    "priority": new_p,
+                    "status": new_s
+                }
+                
+                resultat = mettre_a_jour_ticket_logique(data, tid, updates)
+                if resultat:
+                    print(f"✅ Ticket {tid} mis à jour.")
+                else:
+                    print("❌ ID introuvable.")
+            except ValueError:
+                print("Erreur : L'ID doit être un nombre.")
+
+        elif choix == '5':
+            print(count_tic_stat(data))
+
+        elif choix == 'q':
+            break
