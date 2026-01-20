@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Bug bouton login",
+    "description": "Le bouton de connexion ne répond pas sur mobile (Android).",
+    "priority": "High",
+    "status": "Open",
+    "tags": ["bug", "ui", "mobile"],
+    "createdAt": "2026-01-16"
+  },
+  {
+    "id": 2,
+    "title": "Ajouter un filtre par priorité",
+    "description": "Permettre de filtrer les tickets par priorité (Low, Medium, High).",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": ["feature", "ux"],
+    "createdAt": "2026-01-15"
+  },
+  {
+    "id": 3,
+    "title": "Crash au chargement",
+    "description": "L'application crash quand l'utilisateur n'a pas de réseau.",
+    "priority": "High",
+    "status": "Open",
+    "tags": ["bug", "performance"],
+    "createdAt": "2026-01-17"
+  },
+  {
+    "id": 4,
+    "title": "Traduction manquante",
+    "description": "Le texte du footer est encore en anglais sur la version FR.",
+    "priority": "Low",
+    "status": "Closed",
+    "tags": ["i18n", "ui"],
+    "createdAt": "2026-01-10"
+  },
+  {
+    "id": 5,
+    "title": "Optimisation images",
+    "description": "Les images de la galerie sont trop lourdes (chargement lent).",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": ["performance", "mobile"],
+    "createdAt": "2026-01-14"
+  },
+  {
+    "id": 6,
+    "title": "Sécurité : injection SQL",
+    "description": "Faille potentielle détectée sur le formulaire de recherche.",
+    "priority": "High",
+    "status": "Open",
+    "tags": ["security", "backend"],
+    "createdAt": "2026-01-18"
+  },
+  {
+    "id": 7,
+    "title": "Mode sombre",
+    "description": "Ajouter un switch pour le mode sombre dans les paramètres.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": ["feature", "ui"],
+    "createdAt": "2026-01-12"
+  },
+  {
+    "id": 8,
+    "title": "Erreur 404 sur profil",
+    "description": "Certains profils utilisateurs ne sont pas trouvés.",
+    "priority": "Medium",
+    "status": "Closed",
+    "tags": ["bug", "api"],
+    "createdAt": "2026-01-11"
+  },
+  {
+    "id": 9,
+    "title": "Refonte header",
+    "description": "Le menu de navigation doit être revu pour plus de clarté.",
+    "priority": "Low",
+    "status": "In progress",
+    "tags": ["ux", "ui"],
+    "createdAt": "2026-01-13"
+  },
+  {
+    "id": 10,
+    "title": "Export CSV",
+    "description": "Permettre d'exporter la liste des tickets au format CSV.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": ["feature", "data"],
+    "createdAt": "2026-01-18"
+  }
+]
