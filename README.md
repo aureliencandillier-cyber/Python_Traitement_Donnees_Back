@@ -45,7 +45,7 @@ Le dépôt est organisé comme suit :
 
 ---
 
-## 🚀 Installation rapide
+## Installation rapide
 
 ### 1. Prérequis
 Vous devez disposer de **Python 3.10+** et de l'outil **pip**.
@@ -55,24 +55,32 @@ Exécutez la commande suivante pour installer
 le framework et le serveur :
 
 pip install fastapi uvicorn
-
-### 3. Lancement du serveur
+Lancement du serveur
 Démarrez l'API en mode développement :
-Bash
+
+bash
 uvicorn main:app --reload
 Le serveur écoute sur : http://127.0.0.1:8000
- Détails du traitement de données
- Le fichier script.py contient la logiquemétier critique. 
- Il permet de :
- Lire l'intégralité du fichier JSON.Calculer les statistiques :
- Nombre de tickets "ouverts".
- Nombre de tickets "en cours".
- Nombre de tickets "fermés".
- Filtrer et Trier les données selon
- la priorité ou l'ID.Ajouter / Mettre à jour : Fonctions dédiées à la modification des tickets avec persistance immédiate dans le JSON.
- Documentation de l'API,
- L'API suit les standards REST avec une gestion stricte des codes d'erreur HTTP.Endpoints minimum implémentés :
- Méthode Route Action Code Succès GET/ticketsListe tous les tickets 200POST/tickets Création d'un ticket201PATCH/tickets/{id}
- Changer le statut200DELETE/tickets/{id}
- Supprimer un ticket204Note technique :
- L'API renvoie un code 404 si l'ID du ticket est inexistant et un code 400 > si les données envoyées sont invalides.
+
+Détails du traitement de données
+Le fichier script.py contient la logique métier critique. Il permet de :
+
+Lire l'intégralité du fichier JSON.
+
+Calculer les statistiques : Nombre de tickets "ouverts", "en cours" et "fermés".
+
+Filtrer et Trier les données selon la priorité ou l'ID.
+
+Ajouter / Mettre à jour : Fonctions dédiées à la modification des tickets avec persistance immédiate dans le JSON.
+
+Documentation de l'API
+L'API suit les standards REST avec une gestion stricte des codes d'erreur HTTP.
+
+Endpoints minimum implémentés :
+Méthode	Route	Action	Code Succès
+GET	/tickets	Liste tous les tickets	200
+POST	/tickets	Création d'un ticket	201
+PATCH	/tickets/{id}	Changer le statut	200
+DELETE	/tickets/{id}	Supprimer un ticket	204
+Note technique : L'API renvoie un code 404 si l'ID du ticket est inexistant et un code 400 si les données envoyées sont invalides.
+
