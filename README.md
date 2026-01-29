@@ -12,7 +12,6 @@ Il combine manipulation de données brutes et API REST.
 3. [Installation rapide](#-installation-rapide)
 4. [Détails du traitement de données](#-détails-du-traitement-de-données)
 5. [Documentation de l'API](#-documentation-de-lapi)
-6. [Méthodologie de travail](#-méthodologie-de-travail)
 
 ---
 
@@ -73,7 +72,8 @@ Filtrer et Trier les données selon la priorité ou l'ID.
 
 Ajouter / Mettre à jour : Fonctions dédiées à la modification des tickets avec persistance immédiate dans le JSON.
 
-Documentation de l'API
+## Documentation de l'API
+
 L'API suit les standards REST avec une gestion stricte des codes d'erreur HTTP.
 
 Endpoints minimum implémentés :
