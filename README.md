@@ -77,10 +77,16 @@ Documentation de l'API
 L'API suit les standards REST avec une gestion stricte des codes d'erreur HTTP.
 
 Endpoints minimum implémentés :
+
 Méthode	Route	Action	Code Succès
+
 GET	/tickets	Liste tous les tickets	200
+
 POST	/tickets	Création d'un ticket	201
+
 PATCH	/tickets/{id}	Changer le statut	200
+
 DELETE	/tickets/{id}	Supprimer un ticket	204
+
 Note technique : L'API renvoie un code 404 si l'ID du ticket est inexistant et un code 400 si les données envoyées sont invalides.
 
