@@ -1,10 +1,10 @@
-# 📘 LEARNING.md - Journal d'Apprentissage Fullstack
+# LEARNING.md - Journal d'Apprentissage Fullstack
 
 Ce document retrace le processus de développement, les obstacles techniques rencontrés et la collaboration avec l'IA pour la réalisation du Ticketing System.
 
 ---
 
-## 🤖 1. Prompts Clés Utilisés
+## 1. Prompts Clés Utilisés
 
 Voici trois exemples de prompts structurants qui ont permis de faire évoluer l'application :
 
@@ -24,7 +24,7 @@ Voici trois exemples de prompts structurants qui ont permis de faire évoluer l'
 
 ---
 
-## 🐛 2. Erreurs Rencontrées et Solutions
+## 2. Erreurs Rencontrées et Solutions
 
 ### Erreur #1 : Problème de PATH Python sur Windows
 * **Le Bug :**
@@ -44,7 +44,7 @@ Voici trois exemples de prompts structurants qui ont permis de faire évoluer l'
 
 ---
 
-## 🧠 3. Erreur de l'IA et Vérification Humaine
+## 3. Erreur de l'IA et Vérification Humaine
 
 C'est l'exemple le plus flagrant où la logique "par défaut" de l'IA a échoué face à la logique "métier".
 
@@ -62,7 +62,7 @@ C'est l'exemple le plus flagrant où la logique "par défaut" de l'IA a échoué
 
 ---
 
-## 📝 Synthèse des Apprentissages
+## Synthèse des Apprentissages
 
 1.  **Architecture Fullstack :** Compréhension claire que le Frontend (Port 5173) et le Backend (Port 8000) sont deux programmes distincts qui communiquent par HTTP.
 2.  **Rigueur des Données :** L'importance de transformer des données textuelles (High, Medium) en données numériques (1, 2) pour les traiter logiquement.
