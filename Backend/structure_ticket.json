@@ -5,16 +5,23 @@
     "description": "Le bouton de connexion ne répond pas sur mobile (Android).",
     "priority": "High",
     "status": "Open",
-    "tags": ["bug", "ui", "mobile"],
+    "tags": [
+      "bug",
+      "ui",
+      "mobile"
+    ],
     "createdAt": "2026-01-16"
   },
   {
     "id": 2,
     "title": "Ajouter un filtre par priorité",
-    "description": "Permettre de filtrer les tickets par priorité (Low, Medium, High).",
+    "description": "Permettre de filtrer les tickets par priorité (Low, Medium, High).\nFini",
     "priority": "Medium",
-    "status": "In progress",
-    "tags": ["feature", "ux"],
+    "status": "Closed",
+    "tags": [
+      "feature",
+      "ux"
+    ],
     "createdAt": "2026-01-15"
   },
   {
@@ -23,7 +30,10 @@
     "description": "L'application crash quand l'utilisateur n'a pas de réseau.",
     "priority": "High",
     "status": "Open",
-    "tags": ["bug", "performance"],
+    "tags": [
+      "bug",
+      "performance"
+    ],
     "createdAt": "2026-01-17"
   },
   {
@@ -32,7 +42,10 @@
     "description": "Le texte du footer est encore en anglais sur la version FR.",
     "priority": "Low",
     "status": "Closed",
-    "tags": ["i18n", "ui"],
+    "tags": [
+      "i18n",
+      "ui"
+    ],
     "createdAt": "2026-01-10"
   },
   {
@@ -41,7 +54,10 @@
     "description": "Les images de la galerie sont trop lourdes (chargement lent).",
     "priority": "Medium",
     "status": "In progress",
-    "tags": ["performance", "mobile"],
+    "tags": [
+      "performance",
+      "mobile"
+    ],
     "createdAt": "2026-01-14"
   },
   {
@@ -50,7 +66,10 @@
     "description": "Faille potentielle détectée sur le formulaire de recherche.",
     "priority": "High",
     "status": "Open",
-    "tags": ["security", "backend"],
+    "tags": [
+      "security",
+      "backend"
+    ],
     "createdAt": "2026-01-18"
   },
   {
@@ -59,7 +78,10 @@
     "description": "Ajouter un switch pour le mode sombre dans les paramètres.",
     "priority": "Low",
     "status": "Open",
-    "tags": ["feature", "ui"],
+    "tags": [
+      "feature",
+      "ui"
+    ],
     "createdAt": "2026-01-12"
   },
   {
@@ -68,7 +90,10 @@
     "description": "Certains profils utilisateurs ne sont pas trouvés.",
     "priority": "Medium",
     "status": "Closed",
-    "tags": ["bug", "api"],
+    "tags": [
+      "bug",
+      "api"
+    ],
     "createdAt": "2026-01-11"
   },
   {
@@ -77,7 +102,10 @@
     "description": "Le menu de navigation doit être revu pour plus de clarté.",
     "priority": "Low",
     "status": "In progress",
-    "tags": ["ux", "ui"],
+    "tags": [
+      "ux",
+      "ui"
+    ],
     "createdAt": "2026-01-13"
   },
   {
@@ -86,7 +114,483 @@
     "description": "Permettre d'exporter la liste des tickets au format CSV.",
     "priority": "Medium",
     "status": "Open",
-    "tags": ["feature", "data"],
+    "tags": [
+      "feature",
+      "data"
+    ],
+    "createdAt": "2026-01-18"
+  },
+  {
+    "id": 11,
+    "title": "Intégration SSO Google",
+    "description": "Permettre aux utilisateurs de se connecter via leur compte Google Workspace.",
+    "priority": "High",
+    "status": "In progress",
+    "tags": [
+      "feature",
+      "security",
+      "backend"
+    ],
+    "createdAt": "2026-01-20"
+  },
+  {
+    "id": 12,
+    "title": "Lenteur base de données",
+    "description": "Les requêtes sur la table 'logs' prennent plus de 2 secondes.",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "performance",
+      "backend"
+    ],
+    "createdAt": "2026-01-21"
+  },
+  {
+    "id": 13,
+    "title": "Mise en conformité RGPD",
+    "description": "Ajouter la fonction d'exportation et de suppression des données personnelles.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "legal",
+      "data"
+    ],
+    "createdAt": "2026-01-19"
+  },
+  {
+    "id": 14,
+    "title": "Refactoring du module Auth",
+    "description": "Nettoyage du code legacy dans le middleware d'authentification.",
+    "priority": "Low",
+    "status": "In progress",
+    "tags": [
+      "refactor",
+      "backend"
+    ],
+    "createdAt": "2026-01-15"
+  },
+  {
+    "id": 15,
+    "title": "Crash iOS au scan QR",
+    "description": "La caméra ne s'ouvre pas sur iPhone 13 Pro (iOS 17).",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "bug",
+      "mobile"
+    ],
+    "createdAt": "2026-01-22"
+  },
+  {
+    "id": 16,
+    "title": "Système de notifications Push",
+    "description": "Implémenter Firebase Cloud Messaging pour les alertes en temps réel.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "feature",
+      "mobile",
+      "backend"
+    ],
+    "createdAt": "2026-01-20"
+  },
+  {
+    "id": 17,
+    "title": "Erreur de frappe CGU",
+    "description": "Plusieurs fautes d'orthographe détectées dans les conditions générales.",
+    "priority": "Low",
+    "status": "Closed",
+    "tags": [
+      "docs",
+      "ui"
+    ],
+    "createdAt": "2026-01-05"
+  },
+  {
+    "id": 18,
+    "title": "Monitoring avec Sentry",
+    "description": "Configurer Sentry pour capturer les erreurs front-end en production.",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": [
+      "devops",
+      "performance"
+    ],
+    "createdAt": "2026-01-18"
+  },
+  {
+    "id": 19,
+    "title": "Filtre par date",
+    "description": "Ajouter un sélecteur de plage de dates sur le dashboard.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "feature",
+      "ux"
+    ],
+    "createdAt": "2026-01-21"
+  },
+  {
+    "id": 20,
+    "title": "Faille XSS barre de recherche",
+    "description": "Caractères spéciaux non échappés dans les résultats de recherche.",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "security",
+      "backend"
+    ],
+    "createdAt": "2026-01-22"
+  },
+  {
+    "id": 21,
+    "title": "Mise à jour Docker",
+    "description": "Passer à la version 24.0 pour corriger une vulnérabilité système.",
+    "priority": "Medium",
+    "status": "Closed",
+    "tags": [
+      "devops",
+      "security"
+    ],
+    "createdAt": "2026-01-08"
+  },
+  {
+    "id": 22,
+    "title": "Traduction Allemand",
+    "description": "Traduire l'interface complète pour le lancement sur le marché DACH.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": [
+      "i18n",
+      "feature"
+    ],
+    "createdAt": "2026-01-15"
+  },
+  {
+    "id": 23,
+    "title": "Problème de scroll horizontal",
+    "description": "La page déborde sur les écrans de moins de 320px de large.",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": [
+      "bug",
+      "ui",
+      "mobile"
+    ],
+    "createdAt": "2026-01-19"
+  },
+  {
+    "id": 24,
+    "title": "Audit de performance Lighthouse",
+    "description": "Le score est tombé à 65/100 sur la home page.",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "performance",
+      "ui"
+    ],
+    "createdAt": "2026-01-21"
+  },
+  {
+    "id": 25,
+    "title": "Documentation API Swagger",
+    "description": "Mettre à jour les schémas de réponse pour les routes /billing.",
+    "priority": "Low",
+    "status": "In progress",
+    "tags": [
+      "docs",
+      "api"
+    ],
+    "createdAt": "2026-01-17"
+  },
+  {
+    "id": 26,
+    "title": "Webhook Stripe",
+    "description": "Gérer les échecs de paiement récurrents via Stripe Webhooks.",
+    "priority": "High",
+    "status": "In progress",
+    "tags": [
+      "feature",
+      "backend"
+    ],
+    "createdAt": "2026-01-20"
+  },
+  {
+    "id": 27,
+    "title": "Accessibilité : contrastes",
+    "description": "Le texte gris sur fond blanc ne respecte pas les normes WCAG AA.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "ux",
+      "ui"
+    ],
+    "createdAt": "2026-01-14"
+  },
+  {
+    "id": 28,
+    "title": "Auto-complétion adresses",
+    "description": "Intégrer l'API Google Maps pour la saisie des adresses de livraison.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": [
+      "feature",
+      "ux"
+    ],
+    "createdAt": "2026-01-12"
+  },
+  {
+    "id": 29,
+    "title": "Bug calcul TVA",
+    "description": "La TVA est mal arrondie pour les montants se terminant par .99.",
+    "priority": "High",
+    "status": "Closed",
+    "tags": [
+      "bug",
+      "backend",
+      "data"
+    ],
+    "createdAt": "2026-01-02"
+  },
+  {
+    "id": 30,
+    "title": "Migration vers React 19",
+    "description": "Tester la compatibilité des librairies tierces avec la nouvelle version.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "refactor",
+      "performance"
+    ],
+    "createdAt": "2026-01-22"
+  },
+  {
+    "id": 31,
+    "title": "Rate Limiting API",
+    "description": "Limiter à 100 requêtes / minute par clé API pour éviter les abus.",
+    "priority": "High",
+    "status": "In progress",
+    "tags": [
+      "security",
+      "api"
+    ],
+    "createdAt": "2026-01-18"
+  },
+  {
+    "id": 32,
+    "title": "Favicon manquant",
+    "description": "Le favicon ne s'affiche pas sur Safari Desktop.",
+    "priority": "Low",
+    "status": "Closed",
+    "tags": [
+      "bug",
+      "ui"
+    ],
+    "createdAt": "2025-12-28"
+  },
+  {
+    "id": 33,
+    "title": "Upload images profil",
+    "description": "Permettre le crop des photos avant l'upload.",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": [
+      "feature",
+      "ui"
+    ],
+    "createdAt": "2026-01-16"
+  },
+  {
+    "id": 34,
+    "title": "Nettoyage logs production",
+    "description": "Archiver les logs de plus de 30 jours sur AWS S3.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": [
+      "devops",
+      "data"
+    ],
+    "createdAt": "2026-01-10"
+  },
+  {
+    "id": 35,
+    "title": "Alerte expiration certificat SSL",
+    "description": "Renouveler le certificat Let's Encrypt avant le 15 février.",
+    "priority": "High",
+    "status": "Closed",
+    "tags": [
+      "devops",
+      "security"
+    ],
+    "createdAt": "2026-01-15"
+  },
+  {
+    "id": 36,
+    "title": "Tri par colonne",
+    "description": "Rendre toutes les colonnes des tableaux triables par clic sur header.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "feature",
+      "ux"
+    ],
+    "createdAt": "2026-01-13"
+  },
+  {
+    "id": 37,
+    "title": "Leak mémoire frontend",
+    "description": "L'onglet Chrome monte à 2GB après 1h d'utilisation intensive.",
+    "priority": "High",
+    "status": "In progress",
+    "tags": [
+      "bug",
+      "performance"
+    ],
+    "createdAt": "2026-01-21"
+  },
+  {
+    "id": 38,
+    "title": "Dashboard Admin : Graphiques",
+    "description": "Remplacer Chart.js par Recharts pour une meilleure réactivité.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": [
+      "refactor",
+      "ui"
+    ],
+    "createdAt": "2026-01-14"
+  },
+  {
+    "id": 39,
+    "title": "Validation emails",
+    "description": "Bloquer les domaines d'emails jetables à l'inscription.",
+    "priority": "Medium",
+    "status": "Open",
+    "tags": [
+      "security",
+      "backend"
+    ],
+    "createdAt": "2026-01-11"
+  },
+  {
+    "id": 41,
+    "title": "Bug affichage Emoji",
+    "description": "Les emojis s'affichent comme des carrés sur Windows 10.",
+    "priority": "Low",
+    "status": "Closed",
+    "tags": [
+      "bug",
+      "ui"
+    ],
+    "createdAt": "2026-01-05"
+  },
+  {
+    "id": 42,
+    "title": "Timeout API paiement",
+    "description": "Les requêtes vers l'API de paiement expirent après 10 secondes.",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "bug",
+      "api",
+      "backend"
+    ],
+    "createdAt": "2026-01-23"
+  },
+  {
+    "id": 43,
+    "title": "Cache navigateur trop agressif",
+    "description": "Certaines ressources ne se rafraîchissent pas après déploiement.",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": [
+      "performance",
+      "frontend"
+    ],
+    "createdAt": "2026-01-22"
+  },
+  {
+    "id": 44,
+    "title": "Erreur permissions admin",
+    "description": "Les admins ne peuvent pas accéder à certaines routes sécurisées.",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "security",
+      "backend"
+    ],
+    "createdAt": "2026-01-24"
+  },
+  {
+    "id": 45,
+    "title": "Amélioration onboarding",
+    "description": "Ajouter un tutoriel interactif pour les nouveaux utilisateurs.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": [
+      "ux",
+      "feature"
+    ],
+    "createdAt": "2026-01-21"
+  },
+  {
+    "id": 46,
+    "title": "Erreur synchronisation mobile",
+    "description": "Les données ne se synchronisent pas toujours en 4G.",
+    "priority": "Medium",
+    "status": "In progress",
+    "tags": [
+      "mobile",
+      "bug"
+    ],
+    "createdAt": "2026-01-23"
+  },
+  {
+    "id": 47,
+    "title": "Logs trop verbeux",
+    "description": "Réduire le niveau de logs en production.",
+    "priority": "Low",
+    "status": "Closed",
+    "tags": [
+      "devops",
+      "backend"
+    ],
+    "createdAt": "2026-01-09"
+  },
+  {
+    "id": 48,
+    "title": "Double authentification (2FA)",
+    "description": "Implémenter TOTP (Google Authenticator) pour les admins.",
+    "priority": "High",
+    "status": "Open",
+    "tags": [
+      "security",
+      "feature"
+    ],
+    "createdAt": "2026-01-24"
+  },
+  {
+    "id": 49,
+    "title": "Chargement infini",
+    "description": "Le loader reste affiché lors d'erreurs API.",
+    "priority": "Low",
+    "status": "Open",
+    "tags": [
+      "bug",
+      "frontend"
+    ],
+    "createdAt": "2026-01-22"
+  },
+  {
+    "id": 50,
+    "title": "Audit de logs sensibles",
+    "description": "Vérifier qu'aucun mot de passe n'est loggé en clair.",
+    "priority": "High",
+    "status": "Closed",
+    "tags": [
+      "security",
+      "backend"
+    ],
     "createdAt": "2026-01-18"
   }
 ]
