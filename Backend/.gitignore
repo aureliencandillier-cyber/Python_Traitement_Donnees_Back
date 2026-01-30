@@ -1,0 +1,17 @@
+# Environnement Python
+.venv/
+__pycache__/
+*.pyc
+
+# Frontend (hors scope de ce repo)
+../Frontend/
+
+# Docs hors backend
+../README.md
+../LEARNING.md
+../structure_ticket.json
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
